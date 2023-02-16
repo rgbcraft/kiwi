@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'java-gradle-plugin'
+}
+
+apply plugin: 'java'
+
+group 'com.rgbcraft'
+version '1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.rgbcraft.com/'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    implementation gradleApi()
+
+    implementation('com.rgbcraft:kiwi-fernflower:1.0.0')
+    implementation 'org.cadixdev:lorenz:0.5.7'
+    compileOnly 'org.jetbrains:annotations:24.0.0'
+    implementation 'org.cadixdev:mercury:0.1.0'
+}
+
+gradlePlugin {
+    plugins {
+        kiwi {
+            id = 'com.rgbcraft.kiwi'
+            implementationClass = 'com.rgbcraft.Kiwi'
+        }
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
